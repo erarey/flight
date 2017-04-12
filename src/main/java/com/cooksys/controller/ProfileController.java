@@ -13,6 +13,7 @@ import com.cooksys.entity.Profile;
 import com.cooksys.entity.embeddable.Credentials;
 import com.cooksys.exception.UserCredentialsMismatchException;
 import com.cooksys.service.ProfileService;
+import com.cooksys.wrapper.OmniwrapperWithCredentials;
 
 @RestController
 @RequestMapping("user")
@@ -34,23 +35,29 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ProfileDto getUser(String username, @RequestBody Credentials credentials)
+	public ProfileDto login(@RequestBody Credentials credentials)
 	{	
-		profileService.login(credentials);
+		return profileService.login(credentials);
 	}
 	
 	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
-	public ProfileDto newUser(String username, @RequestBody Profile profile)
+	public ProfileDto newUser(@RequestBody Profile profile)
 	{	
-		profileService.newUser(profile);
+		System.out.println("trying to make new user with " + profile.getFirstName());
+		return profileService.newUser(profile);
 	}
 	
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-	public ProfileDto getUser(String username, @RequestBody Profile profile)
+	public ProfileDto updateUser1(@RequestBody Profile profile)
 	{	
-		profileService.update(profile);
+		return profileService.updateUser(profile);
 	}
 	
+	@RequestMapping(value = "/postNewFlight", method = RequestMethod.POST)
+	public ProfileDto updateUser(String username, @RequestBody OmniwrapperWithCredentials wrapper)
+	{	
+		return profileService.postNewFlight(wrapper);
+	}
 	
 	@RequestMapping(value = "/test/{username}", method = RequestMethod.POST)
 	public String getUserTest(@PathVariable("username") String username, @RequestBody Credentials credentials)

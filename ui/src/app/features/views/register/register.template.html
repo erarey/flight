@@ -1,0 +1,43 @@
+<p> | </p>
+<md-button ng-click='ctrl.newUser()'>NEW USER</md-button>
+<p> | </p>
+  <md-button class='md-primary' type="button" ng-click='ctrl.register(form)'>consoleOut</md-button>
+
+<p> {{ctrl.username}} </p>
+
+<p> {{ctrl.password}} </p>
+
+<p> {{ctrl.getLoggedIn()}} </p>
+<md-button ng-show='ctrl.getLoggedIn()' ng-click='$appCtrl.setLoggedIn(false)'>LOGOUT</md-button>
+
+<p> {{$appCtrl.lastError}} </p>
+
+<p> | </p>
+
+<p> | </p>
+
+<p> | </p>
+
+<div ng-show='!ctrl.getLoggedIn()'>
+
+    <form name="saveTemplateData" action="#" ng-submit="ctrl.register(form)">
+
+        Prefered Username: <br/><input type="text" ng-model="form.credentials.username"> <br/><br/>
+        Password: <br/><input type="text" ng-model="form.credentials.password"> <br/><br/>
+        First name:    <br/><input type="text" ng-model="form.firstName">    <br/><br/>
+        Last name: <br/><input type="text" ng-model="form.lastName"> <br/><br/>
+        Address: <br/><input type="text" ng-model="form.address"> <br/><br/>
+        Email Address: <br/><input type="text" ng-model="form.emailaddress"> <br/><br/>
+        Phone: <br/><input type="text" ng-model="form.phone"> <br/><br/>
+
+        <input class='md-button md-primary' type="submit">
+
+          <md-button class='md-primary' type="button" ng-click='ctrl.register(form)'>consoleOut</md-button>
+
+    </form>
+
+
+
+    <p>{{form.credentials.username}}</p>
+
+</div>

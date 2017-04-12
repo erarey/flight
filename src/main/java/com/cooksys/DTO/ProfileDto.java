@@ -16,7 +16,27 @@ public class ProfileDto {
 	
 	String phone;
 	
+	String email;
+	
+	Boolean deleted;
+
 	List<Itinerary> itineraryHistory;
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getUsername() {
 		return username;

@@ -2,7 +2,7 @@ import templateUrl from './profile.template.html'
 
 export default
 angular.module('flight')
-  .component('profile', {
+  .component('register', {
     templateUrl,
     controller: function($log, ProfileService, $q) {
       $log.debug('Profile controller is a go.')

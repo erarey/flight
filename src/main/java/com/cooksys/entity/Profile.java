@@ -34,11 +34,20 @@ import com.cooksys.entity.embeddable.Credentials;
 		
 		String phone;
 		
+		String email;
+		
 		Boolean deleted = false;
 		
 		@OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
 		List<Itinerary> itineraryHistory;
 		
+		public void setEmail(String email) {
+			this.email = email;
+		}
+		
+		public String getEmail() {
+			return email;
+		}
 		public Boolean getDeleted() {
 			return deleted;
 		}
@@ -124,8 +133,4 @@ import com.cooksys.entity.embeddable.Credentials;
 				return false;
 			return true;
 		}
-		
-		
-
-		
 	}
