@@ -19,7 +19,7 @@ public class ProfileMapper {
 		if (p.getLastName() != null) dto.setLastName(dto.getLastName());
 		if (p.getPhone() != null) dto.setPhone(p.getPhone());
 		if (p.getAddress() != null) dto.setAddress(p.getAddress());
-		if (p.getItineraryHistory() != null) dto.setItineraryHistory(p.getItineraryHistory());
+		//if (p.getItineraryHistory() != null) dto.setItineraryHistory(p.getItineraryHistory());
 
 		return dto;
 	}

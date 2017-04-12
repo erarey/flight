@@ -1,0 +1,31 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: lightblue;
+}
+
+.icon
+{
+  font-size: 30px;
+}
+
+.bigger-icon
+{
+  font-size: 36px;
+}
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

@@ -2,7 +2,7 @@ package com.cooksys.DTO;
 
 import java.util.List;
 
-import com.cooksys.entity.embeddable.Itinerary;
+import com.cooksys.entity.Itinerary;
 
 public class ProfileDto {
 	

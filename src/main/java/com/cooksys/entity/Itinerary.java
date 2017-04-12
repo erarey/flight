@@ -1,35 +1,35 @@
-package com.cooksys.entity.embeddable;
+package com.cooksys.entity;
 
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.cooksys.pojo.Flight;
 
-@Embeddable
+@Entity
 public class Itinerary {
 	@Id
 	@GeneratedValue
 	private Long id;
 	
-	@Column(name = "offered", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	//@Column(name = "offered", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Timestamp offered;
 	
-	@ElementCollection
+	@ManyToOne
+	Profile profile;
+	
+	@OneToMany(mappedBy = "itinerary", cascade = CascadeType.ALL)
 	List<FlightEntity> flights;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public Timestamp getOffered() {
 		return offered;
@@ -51,7 +51,7 @@ public class Itinerary {
 	{
 		this.flights.add(flightEntity);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,6 +76,11 @@ public class Itinerary {
 			return false;
 		return true;
 	}
+
+	
+	
+	
+	
 	
 	
 }

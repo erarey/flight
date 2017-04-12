@@ -2,24 +2,26 @@ package com.cooksys.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.cooksys.entity.embeddable.Credentials;
-import com.cooksys.entity.embeddable.Itinerary;
 
 	@Entity
-	@Table(name = "Location")
+	@Table(name = "Profile")
 	public class Profile {
 
 		@Id
 		@GeneratedValue
-		private long id;
+		private Long id;
 		
 		@Embedded
 		Credentials credentials;
@@ -32,14 +34,32 @@ import com.cooksys.entity.embeddable.Itinerary;
 		
 		String phone;
 		
-		@ElementCollection
+		Boolean deleted = false;
+		
+		@OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
 		List<Itinerary> itineraryHistory;
+		
+		public Boolean getDeleted() {
+			return deleted;
+		}
 
-		public long getId() {
+		public void setDeleted(Boolean deleted) {
+			this.deleted = deleted;
+		}
+
+		public List<Itinerary> getItineraryHistory() {
+			return itineraryHistory;
+		}
+
+		public void setItineraryHistory(List<Itinerary> itineraryHistory) {
+			this.itineraryHistory = itineraryHistory;
+		}
+
+		public Long getId() {
 			return id;
 		}
 
-		public void setId(long id) {
+		public void setId(Long id) {
 			this.id = id;
 		}
 
@@ -81,14 +101,6 @@ import com.cooksys.entity.embeddable.Itinerary;
 
 		public void setPhone(String phone) {
 			this.phone = phone;
-		}
-
-		public List<Itinerary> getItineraryHistory() {
-			return itineraryHistory;
-		}
-
-		public void setItineraryHistory(List<Itinerary> itineraryHistory) {
-			this.itineraryHistory = itineraryHistory;
 		}
 
 		@Override

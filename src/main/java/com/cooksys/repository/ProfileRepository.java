@@ -8,7 +8,7 @@ import com.cooksys.entity.Profile;
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
 
-	Profile findById(long id);
+	Profile findById(Long id);
 	
 	Profile findByCredentialsUsername(String username);
 	
