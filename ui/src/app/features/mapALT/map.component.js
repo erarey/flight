@@ -9,15 +9,24 @@ angular.module('flight')
     controller: function (MapService, $q) {
       this.zoom = 6
 
+      this.path = [[36.1627,-86.7816],[50.1627,-86.7816]]
+
+      this.getMarkers = () => MapService.getMarkers()
+
       this.center = [36.1627,-86.7816]
 
-      this.markers = []
+      this.saveFlightToProfile = () => MapService.savePotentialFlightToProfile()
 
-      this.addMarker = (marker) => this.markers.push(marker)
+      this.twoMarkersToSinglePath = () => {
+        //console.log("TWOMARKERS: ")
+        //console.log(MapService.twoMarkersToSinglePath())
+        this.path = MapService.twoMarkersToSinglePath()
+        return MapService.twoMarkersToSinglePath()
+      }
 
-      this.addMarker('Knoxville', [35.9606, -83.9207])
+      //this.addMarker('Knoxville', [35.9606, -83.9207])
 
-      this.addMarkerFromDatabase = (city) =>
+      /*this.addMarkerFromDatabase = (city) =>
         MapService.getMarkerByCityName(city)
           .then((data) => {
             const newMarker = {title:'', position:[]}
@@ -27,10 +36,14 @@ angular.module('flight')
             this.addMarker(newMarker)
           }
         )
-
-        console.log(this.addMarkerFromDatabase('Memphis'))
+        */
+        //this.addMarkerFromDatabase('Memphis')
+        this.twoMarkersToSinglePath()
     },
-    controllerAs: 'ctrl'
+    controllerAs: 'ctrl',
+    bindings: {
+
+    }
 
   }
 )

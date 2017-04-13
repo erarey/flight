@@ -15,7 +15,6 @@ angular.module('flight')
       }
       */
 
-
     this.getFlights = () => {
       return $http
         .get(`${apiUrl}/flights`)

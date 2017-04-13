@@ -27,6 +27,7 @@
 
   <div layout="column" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
   <span>
+    <div ng-show="!(ctrl.flights | filter:{origin: originfilter, destination: destinationfilter}).length">There are no flights available at this time.</div>
   <md-whiteframe ng-repeat='flight in ctrl.flights | orderBy:"offset" | filter:{origin: originfilter, destination: destinationfilter}' class="md-whiteframe-6dp black" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
   <span>
     <ul>
@@ -34,8 +35,9 @@
       <li class='white-text'>Destination: {{flight.destination}}</li>
       <li class='white-text'>Flighttime: {{flight.flightTime}}</li>
       <li class='white-text'>Offset: {{flight.offset}}</li>
+      <li class='white-text'>Total time for this itinerary: {{flight.offset+flight.flightTime}}</li>
     </ul>
-    <md-button ng-show='ctrl.getLoggedIn()' class='md-fab cart-button' aria-label='fly' style='background-color:blue; font-size:38px; font-align: center; right:0px; position:absolute'><i class='material-icons'>flight</i></md-button>
+    <md-button ng-show='ctrl.getLoggedIn()' ng-click='ctrl.pickedDirectFlight(flight)' class='md-fab cart-button' aria-label='fly' style='background-color:blue; font-size:38px; font-align: center; right:0px; position:absolute'><i class='material-icons'>flight</i></md-button>
   </span>
   </md-whiteframe>
   <div style='width:20px'></div>
@@ -57,6 +59,7 @@
 <md-tab label="Map">
   <md-content class="md-padding see-through-black">
     <h1 class="md-display-2">Selected Itinerary <md-button ui-sref='splashALT'>[ BACK ]</md-button></h1>
+
       <md-button ui-sref='map'>Go to Map</md-button>
   </md-content>
 </md-tab>

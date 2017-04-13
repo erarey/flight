@@ -5,16 +5,17 @@
 	    position="{{mapMarker.position}}">
 	  </marker>
 	  <shape
-	    ng-repeat="mapPath in ctrl.paths"
 	    name="polyline"
-	    path="{{mapPath.path}}"
-	    stroke-color="{{mapPath.strokeColor}}"
-	    stroke-opacity="{{mapPath.strokeOpacity}}"
-	    stroke-weight="{{mapPath.strokeWeight}}"
-	    geodesic="{{mapPath.geodesic}}">
+	    path="{{ctrl.path}}"
+	    stroke-color="#FF0000"
+	    stroke-opacity="2"
+	    stroke-weight="2"
+	    geodesic="true">
 	  </shape>
 </ng-map>
 
 </div>
 <p>Map</p>
+<md-button ng-click='ctrl.saveFlightToProfile()'>[ SAVE THIS ITINERARY ]</md-button>
+
 <md-button ui-sref='splashALT'>[ BACK ]</md-button>

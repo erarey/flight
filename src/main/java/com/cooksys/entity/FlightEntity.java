@@ -16,6 +16,7 @@ public class FlightEntity {
 	
 	@ManyToOne
 	private Itinerary itinerary;
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
