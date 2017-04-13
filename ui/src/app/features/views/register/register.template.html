@@ -1,43 +1,64 @@
-<p> | </p>
-<md-button ng-click='ctrl.newUser()'>NEW USER</md-button>
-<p> | </p>
-  <md-button class='md-primary' type="button" ng-click='ctrl.register(form)'>consoleOut</md-button>
 
-<p> {{ctrl.username}} </p>
+<div layout="column" ng-show='!ctrl.getLoggedIn()' layout-padding ng-cloak>
 
-<p> {{ctrl.password}} </p>
+  <md-content class="md-no-momentum">
+    <span>
+      <md-button style='width:50px;' ui-sref='splashALT'>[ BACK ]</md-button>
+      <md-button class='md-primary' style='width:50px;' ng-click='ctrl.register(form)'>[ SUBMIT ]</md-button>
 
-<p> {{ctrl.getLoggedIn()}} </p>
-<md-button ng-show='ctrl.getLoggedIn()' ng-click='$appCtrl.setLoggedIn(false)'>LOGOUT</md-button>
+    </span>
+    <h3 style='color="red"'> {{ctrl.lastError}} </h3>
+    <md-input-container class="md-icon-float md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label>Prefered Username</label>
+      <i class='material-icons icon-left'>security</i>
+      <input ng-model="form.credentials.username" type="text">
+    </md-input-container>
 
-<p> {{$appCtrl.lastError}} </p>
+    <md-input-container class="md-icon-float md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label>Password</label>
+      <i class='material-icons icon-left'>security</i>
+      <input ng-model="form.credentials.password" type="text">
+    </md-input-container>
 
-<p> | </p>
+    <md-input-container class="md-icon-float md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label>First Name</label>
+      <i class='material-icons icon-left'>face</i>
+      <input ng-model="form.firstName" type="text">
+    </md-input-container>
 
-<p> | </p>
+    <md-input-container class="md-icon-float md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label>Last Name</label>
+      <i class='material-icons icon-left'>fingerprint</i>
+      <input ng-model="form.lastName" type="text">
+    </md-input-container>
 
-<p> | </p>
+    <md-input-container class="md-icon-float md-block">
+      <label>Phone</label>
+      <i class='material-icons icon-left'>phone</i>
+      <input ng-model="form.phone" type="text">
+    </md-input-container>
 
-<div ng-show='!ctrl.getLoggedIn()'>
+    <md-input-container class="md-icon-float md-block">
+      <label>Email</label>
+      <i class='material-icons icon-left'>email</i>
+      <input ng-model="form.email" type="text">
+    </md-input-container>
 
-    <form name="saveTemplateData" action="#" ng-submit="ctrl.register(form)">
+    <md-input-container md-no-float class="md-block">
+      <input ng-model="form.address" type="text" placeholder="Address" >
+      <i class='material-icons icon-left'>home</i>
+    </md-input-container>
 
-        Prefered Username: <br/><input type="text" ng-model="form.credentials.username"> <br/><br/>
-        Password: <br/><input type="text" ng-model="form.credentials.password"> <br/><br/>
-        First name:    <br/><input type="text" ng-model="form.firstName">    <br/><br/>
-        Last name: <br/><input type="text" ng-model="form.lastName"> <br/><br/>
-        Address: <br/><input type="text" ng-model="form.address"> <br/><br/>
-        Email Address: <br/><input type="text" ng-model="form.emailaddress"> <br/><br/>
-        Phone: <br/><input type="text" ng-model="form.phone"> <br/><br/>
-
-        <input class='md-button md-primary' type="submit">
-
-          <md-button class='md-primary' type="button" ng-click='ctrl.register(form)'>consoleOut</md-button>
-
-    </form>
-
+  </md-content>
 
 
-    <p>{{form.credentials.username}}</p>
 
 </div>
+
+<p ng-show='ctrl.getLoggedIn()'>You are already logged in! Great!
+  <md-button style='width:50px;' ui-sref='splashALT'>[ BACK ]</md-button>
+</p>

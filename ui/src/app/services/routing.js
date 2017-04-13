@@ -1,63 +1,43 @@
-angular.module('flight')
+export default
+  angular.module('flight')
 
-  .config(['$stateProvider', function ($stateProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/')
 
-  $stateProvider.state('register', {
-    url: '/user/register',
-    params: { tweetId: null,function:null,tweetsBool:false },
-    component: 'register'
-  })
+    $stateProvider.state('register', {
+      url: '/user/register',
+      component: 'register'
+    })
 
-  $stateProvider.state('tweets', {
-    url: '/tweets',         // Gets all the tweets and then displays them.
-    params: { tweetsBool:true  },
-    component: 'tweet' // Goes to the tweet component or passes the new parameter
+    $stateProvider.state('login', {
+      url: '/user/login',
+      component: 'login'
+    })
 
-    //template: '<h3>Get All Tweets</h3>'
-  })
+    $stateProvider.state('profile', {
+      url: '/user/profile',
+      component: 'profile'
+    })
 
-  $stateProvider.state('feed', {
-    url: '/feed',
-    component: 'feed'
-  })
+    $stateProvider.state('splashALT', {
+      url: '/',
+      component: 'splashALT'
+    })
 
-  $stateProvider.state('following', {
-    url: '/following',
-    component: 'following'
-  })
+    $stateProvider.state('legal', {
+      url: '/legal',
+      component: 'legal'
+    })
 
-  $stateProvider.state('followers', {
-    url: '/followers',
-    component: 'followers'
-  })
+    $stateProvider.state('flights', {
+      url: '/flights',
+      component: 'flights'
+    })
 
-  $stateProvider.state('account', {
-    url: '/account/:username',
-    params: { username: null },
-    component: 'profile',
-  })
-
-  $stateProvider.state('user', {
-    url: '/user/:userId/:function',
-    params: { userId: null, function: null, usersBool:false },
-    component: 'user'
-  })
-
-  $stateProvider.state('users', {
-    url: '/users',
-    params: {usersBool:true},
-    component: 'user'
-  })
-
-  $stateProvider.state('tag', {
-    url: '/tag/:tagId',
-    params: {tagId:null,tagsBool:false},
-    component: 'tag'
-  })
-
-  $stateProvider.state('tags', {
-    url: '/tags',
-    params: {tagsBool:true},
-    component: 'tag'
-  })
-}])
+    $stateProvider.state('shop', {
+      url: '/shop',
+      component: 'shop'
+    })
+  }
+  ]
+)

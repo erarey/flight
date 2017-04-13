@@ -1,23 +1,3 @@
-/* @ngInject */
-/*
-class ProfileService {
-  constructor ($log, $http, apiUrl) {
-    this.$http = $http
-    this.apiUrl = apiUrl
-    this.testdatabasereturn = 'loading...'
-  }
-
-  getProfileByUsername (username) {
-    return this.$http
-      .post(`${this.apiUrl}/user/test/${username}`, {username: 'test', password: 'test'})
-      .then(result => result.data.firstName, (error) => error)
-  }
-
-  //gettestdatabasereturn(){console.log('gettestdatabasereturn firing'); return this.testdatabasereturn}
-}
-
-export default ProfileService
-*/
 export default
 angular.module('flight')
   .service('ProfileService', function($log, $http, $q, apiUrl){
@@ -28,21 +8,22 @@ angular.module('flight')
         .then(result => result.data.firstName, (error) => error)
     }
     */
+    let username = ''
     let loggedIn = false
 
     this.login = (credentials) => {
       return $http
         .post(`${apiUrl}/user/login`, {username: credentials.username, password: credentials.password})
-        .then(success => {console.log(success)})
-
-      //console.log(response)
+        .then(
+          (success) => {console.log('RESPONSE:'); console.log(success); this.setUsername(credentials.username); this.setLoggedIn(true); return success},
+          (error) => {console.log('ERROR:'); console.log(error); return error})
     }
 
-    this.newUser = (wrapper) => {
+    this.newUser = (form) => {
       return $http
-        .post(`${apiUrl}/user/newUser`, wrapper)
+        .post(`${apiUrl}/user/newUser`, form)
         .then(
-          (success) => {console.log('RESPONSE:'); console.log(success); return success},
+          (success) => {console.log('RESPONSE:'); console.log(success); this.setUsername(credentials.username); this.setLoggedIn(true);return success},
           (error) => {console.log('ERROR:'); console.log(error); return error})
 
       console.log('RESPONSE ' + response)
@@ -54,8 +35,12 @@ angular.module('flight')
         .then(success => success.data.firstName, (error) => error)
     }
 
-    this.setLoggedIn = (value) => {loggedIn = value}
+    this.setUsername = (u) => {username = u}
+
+    this.getUsername = () => username
 
     this.getLoggedIn = () => loggedIn
+
+    this.setLoggedIn = (value) => {loggedIn = value}
 
   })

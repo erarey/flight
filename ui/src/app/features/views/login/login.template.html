@@ -1,0 +1,40 @@
+<div layout="column" ng-show='!ctrl.getLoggedIn()' layout-padding ng-cloak>
+
+  <md-content class="md-no-momentum">
+    <span>
+      <md-button style='width:50px;' ui-sref='splashALT'>[ BACK ]</md-button>
+      <md-button class='md-primary' style='width:50px;' ng-click='ctrl.login(form)'>[ SUBMIT ]</md-button>
+
+    </span>
+    <h3 style='color="red"'> {{ctrl.lastError}} </h3>
+    <md-input-container class="md-icon-float md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label>Username</label>
+      <i class='material-icons icon-left'>security</i>
+      <input ng-model="form.username" type="text">
+    </md-input-container>
+
+    <md-input-container class="md-icon-float md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label>Password</label>
+      <i class='material-icons icon-left'>security</i>
+      <input ng-model="form.password" type="text">
+    </md-input-container>
+
+    <span>
+      <i class='material-icons'>thumbs_up</i>
+      <i class='material-icons'>thumbs_up</i>
+      <i class='material-icons'>thumbs_up</i>
+      <i class='material-icons'>thumbs_up</i>
+      <i class='material-icons'>thumbs_up</i>
+    </span>
+
+  </md-content>
+
+
+
+</div>
+
+<p ng-show='ctrl.getLoggedIn()'>You are already logged in! Great!
+  <md-button style='width:50px;' ui-sref='splashALT'>[ BACK ]</md-button>
+</p>

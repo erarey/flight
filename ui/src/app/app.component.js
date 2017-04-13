@@ -18,8 +18,9 @@ class AppController {
 
 export default { // component
   templateUrl,
-  controller: function () {
-    
+  controller: function (ProfileService) {
+
+    this.getUsername = () => ProfileService.getUsername()
   },
   controllerAs: 'ctrl'
 }

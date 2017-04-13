@@ -11,7 +11,7 @@ export default
       'ngMessages',
       'ui.router',
 
-      flightMap,
+      flightMap
     ])
     .constant('apiUrl', apiUrl)
     .component('flightApp', appComponent)
