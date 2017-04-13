@@ -16,11 +16,14 @@ class AppController {
 }
 */
 
-export default { // component
-  templateUrl,
-  controller: function (ProfileService) {
+export default
+angular.module('flight')
 
+  .component('flight-app', {
+    templateUrl,
+    controller: function (ProfileService) {
     this.getUsername = () => ProfileService.getUsername()
   },
   controllerAs: 'ctrl'
 }
+)

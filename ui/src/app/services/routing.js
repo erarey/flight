@@ -38,6 +38,11 @@ export default
       url: '/shop',
       component: 'shop'
     })
+
+    $stateProvider.state('map', {
+      url: '/map',
+      component: 'mapALT'
+    })
   }
   ]
 )

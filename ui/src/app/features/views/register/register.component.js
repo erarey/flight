@@ -49,13 +49,13 @@ angular.module('flight')
       }
 
       this.newUser = (form) => {
-        if (!form || !form.credentials || !form.credentials.username || !form.credentials.password) {
+        if (!form || !form.username || !form.password) {
           this.lastError = 'Please enter a username and password.'
           return
         }
 
         let profile = {}
-        profile.credentials = form.credentials
+        profile.credentials = {username:form.username, password:form.password}
         profile.firstName = form.firstName || ''
         profile.lastName = form.lastName || ''
         profile.address = form.address || ''

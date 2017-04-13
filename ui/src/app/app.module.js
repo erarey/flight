@@ -1,6 +1,4 @@
-import flightMap from './map/map.module'
 import apiUrl from './api.url'
-import appComponent from './app.component.js'
 
 export default
   angular
@@ -10,9 +8,7 @@ export default
       'ngMaterial',
       'ngMessages',
       'ui.router',
-
-      flightMap
+      'ngMap'
     ])
     .constant('apiUrl', apiUrl)
-    .component('flightApp', appComponent)
     .name

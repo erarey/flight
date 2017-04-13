@@ -23,7 +23,7 @@ angular.module('flight')
       return $http
         .post(`${apiUrl}/user/newUser`, form)
         .then(
-          (success) => {console.log('RESPONSE:'); console.log(success); this.setUsername(credentials.username); this.setLoggedIn(true);return success},
+          (success) => {console.log('RESPONSE:'); console.log(success); this.setUsername(form.credentials.username); this.setLoggedIn(true);return success},
           (error) => {console.log('ERROR:'); console.log(error); return error})
 
       console.log('RESPONSE ' + response)

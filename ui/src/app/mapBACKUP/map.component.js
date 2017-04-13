@@ -8,6 +8,7 @@ class MapController {
   paths = []
 
   constructor ($map, locations) {
+    console.log('flightMap is loaded')
     this.$map = $map
 
     // add markers from an angular constant
