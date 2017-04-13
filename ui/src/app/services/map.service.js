@@ -2,35 +2,25 @@
 
 export default
 angular.module('flight')
-  .service('MapService', function ($http, apiUrl) {
+  .service('MapService', function ($state, $http, apiUrl, ProfileService, $q) {
 
     this.markers = []
 
+    this.paths
+
     this.addMarker = (marker) => this.markers.push(marker)
 
-    //this.selectedCities = []
+    this.getLastPath = () => {
+      const paths = this.paths
+      if (!paths || paths.length < 2) { return undefined }
 
-    this.getMarkers = () => {
-      //console.log('SENDING MARKERS:' + this.markers[0].title)
-      //console.log(this.markers)
-      return this.markers
+      return [paths[paths.length-1], paths[paths.length]]
     }
 
-    this.twoMarkersToSinglePath = () => {
-      const markers = this.getMarkers()
-      if (markers.length !== 2) {console.log('MORE/LESS THAN TWO MARKERS'); return [[0,0],[0,0]]}
-      const path = [
-          [
-            markers[0].position[0], markers[0].position[1]
-          ],
-          [
-            markers[1].position[0], markers[1].position[1]
-          ]
-        ]
-        //console.log('PATH')
-        //console.log(path)
-        return path
-
+    this.getMarkers = () => {
+      console.log('SENDING MARKERS:')
+      console.log(this.markers)
+      return this.markers
     }
 
     this.savePotentialFlightToProfile = () => {
@@ -42,6 +32,8 @@ angular.module('flight')
     this.potentialFlight = {}
 
     this.setPotentialFlight = (flight) => {
+      console.log("M-SERV-PREPARING TO SAVE POTENTIAL FLIGHT IN SERVICE:")
+      console.log(flight)
       this.potentialFlight = flight
       this.addSelectedCities([flight.origin, flight.destination])
     }
@@ -61,10 +53,18 @@ angular.module('flight')
           const newMarker = {title:'', position:[]}
           newMarker.title = data.data.city
           newMarker.position = [data.data.latitude, data.data.longitude]
-          //console.log('NEWMARKER:')
-          //console.log(newMarker)
-
+          const halfPath = [ newMarker.position[0], newMarker.position[1] ]
+          if (!this.paths)
+          {
+            partialPath = halfPath
+          }
+          else {
+            this.paths = [halfPath, partialPath]
+          }
+          console.log(this.paths)
           this.addMarker(newMarker)
         })
     }
+
+    let partialPath
   })

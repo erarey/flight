@@ -4,9 +4,9 @@
 	    ng-repeat="mapMarker in ctrl.markers"
 	    position="{{mapMarker.position}}">
 	  </marker>
-	  <shape
+	  <shape ng-if='ctrl.getPaths()'
 	    name="polyline"
-	    path="{{ctrl.path}}"
+	    path="{{ctrl.getPaths()}}"
 	    stroke-color="#FF0000"
 	    stroke-opacity="2"
 	    stroke-weight="2"
@@ -15,7 +15,6 @@
 </ng-map>
 
 </div>
-<p>Map</p>
 <md-button ng-click='ctrl.saveFlightToProfile()'>[ SAVE THIS ITINERARY ]</md-button>
 
-<md-button ui-sref='splashALT'>[ BACK ]</md-button>
+<md-button ui-sref='flights'>[ BACK ]</md-button>

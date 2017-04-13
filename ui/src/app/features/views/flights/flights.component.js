@@ -20,11 +20,6 @@ angular.module('flight')
         $state.go('map')
       }
 
-      this.addSelectedCities = (origin, destination) => {
-        //console.log('ORIGIN: ' + origin + ' DESTINATION: ' + destination)
-        MapService.clearMarkers()
-        MapService.addSelectedCities([origin, destination])}
-
       this.getFlights = () => {
         this.flights = []
         this.destinations = []
@@ -35,7 +30,7 @@ angular.module('flight')
               data.forEach(function (element) {
                 flightList.push(element)
               })
-              console.log(flightList)
+
               this.flights = flightList
               this.flights.forEach((x) => {
                 if (this.destinations.indexOf(x.destination) === -1) {
@@ -61,7 +56,7 @@ angular.module('flight')
             this.refresh = undefined
           }
 
-          this.refresh = $interval( () => {this.getFlights()}, 5000)
+          this.refresh = $interval( () => { this.getFlights() }, 5000)
         }
 
 

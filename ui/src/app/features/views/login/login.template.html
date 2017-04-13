@@ -4,6 +4,7 @@
     <span>
       <md-button style='width:50px;' ui-sref='splashALT'>[ BACK ]</md-button>
       <md-button class='md-primary' style='width:50px;' ng-click='ctrl.login(form)'>[ SUBMIT ]</md-button>
+      <md-button style='width:50px;' ui-sref='register'>[REGISTER]</md-button>
 
     </span>
     <h3 style='color="red"'> {{ctrl.lastError}} </h3>
@@ -35,6 +36,6 @@
 
 </div>
 
-<p ng-show='ctrl.getLoggedIn()'>You are already logged in! Great!
+<p ng-show='ctrl.getLoggedIn()'>You are logged in! Great!
   <md-button style='width:50px;' ui-sref='splashALT'>[ BACK ]</md-button>
 </p>
