@@ -9,24 +9,40 @@ angular.module('flight')
     }
     */
     let username = ''
+    let password = ''
     let loggedIn = false
 
     this.login = (credentials) => {
       return $http
         .post(`${apiUrl}/user/login`, {username: credentials.username, password: credentials.password})
         .then(
-          (success) => {console.log('RESPONSE:'); console.log(success); this.setUsername(credentials.username); this.setLoggedIn(true); return success},
-          (error) => {console.log('ERROR:'); console.log(error); return error})
+          (success) => {
+            this.setUsername(credentials.username)
+            this.setPassword(credentials.password)
+            this.setLoggedIn(true)
+            return success
+          },
+          (error) => { console.log('ERROR:'); console.log(error); return error })
     }
 
     this.newUser = (form) => {
       return $http
         .post(`${apiUrl}/user/newUser`, form)
         .then(
-          (success) => {console.log('RESPONSE:'); console.log(success); this.setUsername(form.credentials.username); this.setLoggedIn(true);return success},
+          (success) => {
+            this.setUsername(form.credentials.username);
+            this.setPassword(form.credentials.password)
+            this.setLoggedIn(true);return success
+          },
           (error) => {console.log('ERROR:'); console.log(error); return error})
+    }
 
-      console.log('RESPONSE ' + response)
+    this.saveItinerary = (itin) => {
+      console.log('PROFILESERVICE--ITINERARY TO SAVE: ')
+      console.log(itin)
+      return $http
+        .post(`${apiUrl}/user/postNewFlight`, {credentials: {username: username, password: password}, itinerary: itin})
+        .then(success => console.log(success), (error) => console.log(error))
     }
 
     this.getProfileByUsername = (username) => {
@@ -35,12 +51,12 @@ angular.module('flight')
         .then(success => success.data.firstName, (error) => error)
     }
 
-    this.setUsername = (u) => {username = u}
+    this.setUsername = (u) => { username = u }
+    this.setPassword = (p) => { password = p }
 
     this.getUsername = () => username
 
     this.getLoggedIn = () => loggedIn
 
-    this.setLoggedIn = (value) => {loggedIn = value}
-
+    this.setLoggedIn = (value) => { loggedIn = value }
   })

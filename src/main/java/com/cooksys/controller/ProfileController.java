@@ -48,13 +48,13 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-	public ProfileDto updateUser1(@RequestBody Profile profile)
+	public ProfileDto updateUser(@RequestBody Profile profile)
 	{	
 		return profileService.updateUser(profile);
 	}
 	
 	@RequestMapping(value = "/postNewFlight", method = RequestMethod.POST)
-	public ProfileDto updateUser(String username, @RequestBody OmniwrapperWithCredentials wrapper)
+	public ProfileDto postNewFlight(String username, @RequestBody OmniwrapperWithCredentials wrapper)
 	{	
 		return profileService.postNewFlight(wrapper);
 	}
